@@ -1,0 +1,10 @@
+.headerbg {
+  background-color: var(--bbva-color);
+}
+.title {
+  font-size: 1.4rem;
+  color: white;
+}
+.bank {
+  letter-spacing: 0.15rem;
+}

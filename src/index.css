@@ -1,0 +1,44 @@
+:root {
+  --bbva-color: #14549c;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.chat-container {
+  @apply flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white bg-opacity-5 h-full min-h-screen px-4 py-16;
+}
+.chat-messages {
+  scrollbar-width: none !important;
+  @apply flex flex-col h-full overflow-x-auto mb-4 overflow-scroll overflow-y-auto;
+}
+.btn-primary {
+  @apply text-white font-bold py-2 px-4 rounded-xl transition-all duration-200 ease-in-out;
+}
+
+.btn-primary:disabled {
+  @apply text-white font-bold py-2 px-4 rounded-xl opacity-50 cursor-not-allowed;
+}
+strong,
+i,
+b,
+a {
+  color: var(--bbva-color);
+}
+h1,
+h2,
+h3 {
+  color: var(--bbva-color);
+}
+h1 {
+  @apply text-3xl;
+}
+h2 {
+  @apply text-2xl;
+}
+h3 {
+  @apply text-xl;
+}
+a {
+  text-decoration: underline;
+}

@@ -14,9 +14,9 @@ const Header = () => {
             <li className="sm: text-sm">
               <Link
                 className="text-sky-50"
-                to={pathname === "/asistente" ? "/acerca-de" : "/asistente"}
+                to={pathname === "/" ? "/acerca-de" : "/"}
               >
-                {pathname === "/asistente" ? "Acerca de:" : "Regresar"}
+                {pathname === "/" ? "Acerca de:" : "Regresar"}
               </Link>
             </li>
           </ul>

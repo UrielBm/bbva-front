@@ -5,7 +5,7 @@ import GeneralWrapperChat from "../components/Chat/GeneralWrapperChat";
 
 export const menuRoutes = [
   {
-    to: "/asistente",
+    to: "",
     title: "Asistente IA",
     description: "Asistente BBVA",
     component: <GeneralWrapperChat />,

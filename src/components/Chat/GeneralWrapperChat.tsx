@@ -27,7 +27,11 @@ const GeneralWrapperChat = () => {
         localStorage.setItem("threadId", response);
       }
     } catch (error) {
-      console.log(error);
+      const errorMessage: Messages = {
+        message: `No se pudo recuperar o crear el hilo, posiblemente error con la conexión a internet.`,
+        role: "assistant",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     }
   };
   const handlePostAMessage = async (message: string) => {

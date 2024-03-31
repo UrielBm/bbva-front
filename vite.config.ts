@@ -5,6 +5,14 @@ import {VitePWA} from "vite-plugin-pwa"
 export default defineConfig({
   plugins: [react(),
   VitePWA({
+    strategies: "injectManifest",
+    srcDir: "src",
+    filename: "sw.js",
+    includeAssets: ['favicon.ico','apple-touch-icon.png', 'masked-ico.png'],
+    injectManifest: {
+      globPatterns: ['**/*.{js,css,html,png,jpg,json,svg}'],
+      maximumFileSizeToCacheInBytes: 10*1024 * 1204
+    },
     manifest:{
       name: "Asistente virtual",
       short_name: "BBVA IA",

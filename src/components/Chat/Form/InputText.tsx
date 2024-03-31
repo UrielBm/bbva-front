@@ -1,10 +1,12 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useContext } from "react";
 import "./form.css";
 import Send from "../../Icons/Send";
+import StatusContext from "../../../context/statusContext";
 interface MyProps {
   handleSendMessage: (message: string) => void;
 }
 const InputText = ({ handleSendMessage }: MyProps) => {
+  const appContext = useContext(StatusContext);
   const [message, setMessage] = useState("");
   const handlePostMessage = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,6 +29,7 @@ const InputText = ({ handleSendMessage }: MyProps) => {
             placeholder="Escribe tu consulta aquí."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            disabled={!appContext?.initialState.status}
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import Spinner from "../Spinner/Spinner";
 import BubbleUserMessage from "./Bubbles/BubbleUserMessage";
 import ChatGptMessage from "./Bubbles/ChatGptMessage";
@@ -27,18 +27,25 @@ const GeneralWrapperChat = () => {
         localStorage.setItem("threadId", response);
       }
     } catch (error) {
-      const errorMessage: Messages = {
-        message: `No se pudo recuperar o crear el hilo, posiblemente error con la conexión a internet.`,
-        role: "assistant",
-      };
-      setMessages((prev) => [...prev, errorMessage]);
+      console.log(error);
     }
   };
   const handlePostAMessage = async (message: string) => {
     try {
-      if (!localStorage.getItem("threadId")) return;
       setIsLoading(true);
       setMessages((prev) => [...prev, { message: message, role: "user" }]);
+      if (!localStorage.getItem("threadId")) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            message:
+              "Al parecer no tienes conexión a internet o falló la comunicación para recuperar el hilo. Lo sentimos mucho, intenta más tarde 🤕",
+            role: "assistant",
+          },
+        ]);
+        setIsLoading(false);
+        return;
+      }
       const messages = await askQuestionUseCase(message);
       setMessages([]);
       for (const reply of messages!) {
@@ -47,7 +54,18 @@ const GeneralWrapperChat = () => {
         }
       }
       setIsLoading(false);
-    } catch (error) {}
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          message:
+            "No pudimos generar una respuesta para tu pregunta, lo sentimos. Intenta más tarde 🤕",
+          role: "assistant",
+        },
+      ]);
+      setIsLoading(false);
+      return;
+    }
   };
   return (
     <main className="chat-container">

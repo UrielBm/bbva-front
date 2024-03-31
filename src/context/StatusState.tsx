@@ -1,4 +1,3 @@
-import { useState } from "react";
 import StatusContext from "./statusContext";
 
 interface initalStateInterface {
@@ -9,9 +8,9 @@ interface childrenProps {
 }
 
 const StatusState = (props: childrenProps) => {
-  const [initialState, setInitialState] = useState<initalStateInterface>({
+  const initialState: initalStateInterface = {
     status: navigator.onLine,
-  });
+  };
   return (
     <StatusContext.Provider value={{ initialState }}>
       {props.children}

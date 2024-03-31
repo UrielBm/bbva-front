@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useContext } from "react";
+import { useEffect, useRef, useState } from "react";
 import Spinner from "../Spinner/Spinner";
 import BubbleUserMessage from "./Bubbles/BubbleUserMessage";
 import ChatGptMessage from "./Bubbles/ChatGptMessage";
